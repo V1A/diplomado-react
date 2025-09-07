@@ -1,7 +1,7 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { LoginPage, UserPage, NotFoundPage } from '../pages/public';
-import { PrivateLayout } from '../layouts/PrivateLayout';
 import { PerfilPage, TasksPage } from '../pages/private';
+import { PrivateLayout } from '../layouts/PrivateLayout';
 
 export const AppRouter = () => {
   return (
