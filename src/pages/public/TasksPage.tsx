@@ -1,1 +1,0 @@
-export const TasksPage = () => <h3>Tareas del Usuario</h3>;

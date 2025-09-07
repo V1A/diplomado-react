@@ -4,6 +4,7 @@ import { PublicRoute } from './PublicRouter';
 import { PrivateLayout } from '../layouts/PrivateLayout';
 import { PerfilPage, TasksPage } from '../pages/private';
 
+
 export const AppRouter = () => {
   return (
     <HashRouter>

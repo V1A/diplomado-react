@@ -1,1 +1,0 @@
-export const PerfilPage = () => <h3>Perfil del Usuario</h3>;
