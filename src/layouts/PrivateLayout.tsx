@@ -1,17 +1,8 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../hooks';
-import { Layout } from '../components';
+import { Outlet } from 'react-router-dom';
 
-export const PrivateLayout = () => {
-  const { token } = useAuth();
-
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
-
-  return (
-    <Layout>
-      <Outlet />
-    </Layout>
-  );
-};
+export const PrivateLayout = () => (
+  <div style={{ padding: '20px' }}>
+    <h2>Área Privada</h2>
+    <Outlet />
+  </div>
+);
