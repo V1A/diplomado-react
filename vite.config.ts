@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/diplomado-react/',
+  base: "./",  // Esto es clave para que las rutas funcionen en deploy
   plugins: [react()],
 });
