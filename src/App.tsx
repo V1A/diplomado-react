@@ -1,12 +1,16 @@
-import { AuthProvider, AlertProvider } from "./contexts";
-import { AppRouter } from "./routes/AppRouter";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/public/LoginPage';
+import DashboardPage from './pages/private/DashboardPage';
 
-export const App = () => {
+function App() {
   return (
-    <AuthProvider>
-      <AlertProvider>
-        <AppRouter />
-      </AlertProvider>
-    </AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
+
+export default App;

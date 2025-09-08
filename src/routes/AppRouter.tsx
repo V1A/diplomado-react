@@ -1,23 +1,27 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
-import { LoginPage, NotFoundPage } from "../pages/public";
-import { PerfilPage, TasksPage } from "../pages/private";
-import { UsersPage } from "../pages/private/UsersPage";
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from '../pages/public/LoginPage';
+import DashboardPage from '../pages/private/DashboardPage';
+import PerfilPage from '../pages/private/PerfilPage';
+import TasksPage from '../pages/private/TasksPage';
+import UsersPage from '../pages/private/UsersPage';
+import { AuthContext } from '../contexts/auth/Auth.context';
 
-export const AppRouter = () => {
+const AppRouter: React.FC = () => {
+  const auth = React.useContext(AuthContext)!;
+
   return (
-    <HashRouter>
+    <BrowserRouter basename="/diplomado-react">
       <Routes>
-        {/* Rutas públicas */}
-        <Route path="/login" element={<LoginPage />} />
-
-        {/* Rutas privadas */}
-        <Route path="/perfil" element={<PerfilPage />} />
-        <Route path="/tasks" element={<TasksPage />} />
-        <Route path="/users" element={<UsersPage />} />
-
-        {/* Ruta por defecto */}
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={auth.user ? <DashboardPage /> : <Navigate to="/" />} />
+        <Route path="/perfil" element={auth.user ? <PerfilPage /> : <Navigate to="/" />} />
+        <Route path="/tasks" element={auth.user ? <TasksPage /> : <Navigate to="/" />} />
+        <Route path="/usuarios" element={auth.user ? <UsersPage /> : <Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
+
+export default AppRouter;

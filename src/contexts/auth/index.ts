@@ -1,2 +1,3 @@
-export * from './Auth.context';
-export * from './Auth.provider';
+export { AuthProvider } from './Auth.provider';
+export { AuthContext } from './Auth.context';
+export type { User } from './Auth.context';

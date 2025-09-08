@@ -1,2 +1,2 @@
-export { PerfilPage } from './PerfilPage';
-export { TasksPage } from './TasksPage';
+export { default as PerfilPage } from './PerfilPage';
+export { default as TasksPage } from './TasksPage';

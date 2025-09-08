@@ -1,54 +1,13 @@
-import {
-  Box,
-  Toolbar,
-  Container,
-} from '@mui/material';
-//import { useAuth } from '../../hooks';
-import {
-  Person as PersonIcon,
-  Assignment as TaskIcon,
-} from '@mui/icons-material';
-import { Header } from './Header';
-import type { MenuType } from './types';
-import { Menu } from './Menu';
-import { Footer } from './Footer';
+import React, { ReactNode } from 'react';
+import Menu from './Menu';
 
-interface Props {
-  children: React.ReactNode;
-}
+interface LayoutProps { children: ReactNode; }
 
-export const Layout = ({ children }: Props) => {
-  //const { logout, user } = useAuth();
+const Layout: React.FC<LayoutProps> = ({ children }) => (
+  <div className="min-h-screen flex flex-col bg-gray-100">
+    <Menu />
+    <main className="flex-1 p-6">{children}</main>
+  </div>
+);
 
-  const menuOptions: MenuType[] = [
-    { text: 'Mi Perfil', icon: <PersonIcon />, path: '/perfil' },
-    { text: 'Mis Tareas', icon: <TaskIcon />, path: '/tasks' },
-  ];
-
-  return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Barra superior */}
-      <Header
-        //username={user?.username}
-        //  logout={logout}
-        menuOptions={menuOptions} logout={function (): void {
-          throw new Error('Function not implemented.');
-        } }      />
-
-      {/* Espaciador para el AppBar fixed */}
-      <Toolbar />
-
-      {/* Contenedor principal (Drawer + contenido) */}
-      <Box sx={{ flex: 1, display: 'flex' }}>
-        {/* Menú lateral */}
-        <Menu menuOptions={menuOptions} />
-
-        {/* Contenido */}
-        <Container sx={{ flex: 1, py: 3 }}>{children}</Container>
-      </Box>
-
-      {/* Footer */}
-      <Footer message="© 2025 Mi App" />
-    </Box>
-  );
-};
+export default Layout;

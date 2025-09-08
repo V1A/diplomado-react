@@ -1,71 +1,21 @@
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Toolbar,
-} from '@mui/material';
-import type { MenuType } from './types';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/auth';
 
-interface Props {
-  menuOptions: MenuType[];
-}
-
-export const Menu = ({ menuOptions }: Props) => {
-  const drawerWidth = 250;
-  const navigate = useNavigate();
+const Menu: React.FC = () => {
+  const auth = useContext(AuthContext);
 
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        [`& .MuiDrawer-paper`]: {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-          borderRight: '1px solid',
-          borderColor: 'divider',
-        },
-        zIndex: 1
-      }}
-    >
-      <Toolbar />
-
-      {/* Menú de navegación */}
-      <List sx={{ px: 1 }}>
-        {menuOptions.map((option) => (
-          <ListItem key={option.text} disablePadding sx={{ mb: 1 }}>
-            <ListItemButton
-              onClick={() => navigate(option.path)}
-              selected={location.pathname === option.path}
-              sx={{
-                borderRadius: 2,
-                '&.Mui-selected': {
-                  bgcolor: 'primary.main',
-                  color: 'white',
-                  '&:hover': { bgcolor: 'primary.dark' },
-                },
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  color:
-                    location.pathname === option.path
-                      ? 'white'
-                      : 'text.secondary',
-                }}
-              >
-                {option.icon}
-              </ListItemIcon>
-              <ListItemText primary={option.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
+    <nav className="bg-blue-600 text-white p-4 flex flex-col sm:flex-row sm:justify-between items-center">
+      <div className="flex flex-col sm:flex-row gap-4 mb-2 sm:mb-0">
+        <Link to="/dashboard" className="px-3 py-1 rounded hover:bg-blue-500">Dashboard</Link>
+        <Link to="/perfil" className="px-3 py-1 rounded hover:bg-blue-500">Perfil</Link>
+        <Link to="/tasks" className="px-3 py-1 rounded hover:bg-blue-500">Tareas</Link>
+        <Link to="/usuarios" className="px-3 py-1 rounded hover:bg-blue-500">Usuarios</Link>
+      </div>
+      <div>{auth?.user ? `Bienvenido, ${auth.user.name}` : 'No logueado'}</div>
+    </nav>
   );
 };
+
+export default Menu;

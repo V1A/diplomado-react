@@ -1,19 +1,22 @@
-import React from "react";
-import { Box, Typography, Avatar, Button } from "@mui/material";
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth/Auth.context';
 
-export const PerfilPage = () => {
-  const user = {
-    name: "Via Contreras",
-    email: "vi.122494@gmail.com",
-    avatar: "https://i.pravatar.cc/150?img=3" // imagen de ejemplo
-  };
+const PerfilPage: React.FC = () => {
+  const auth = useContext(AuthContext)!;
+
+  if (!auth.user) return <p>No hay usuario</p>;
 
   return (
-    <Box p={3} display="flex" flexDirection="column" alignItems="center">
-      <Avatar src={user.avatar} sx={{ width: 120, height: 120, mb: 2 }} />
-      <Typography variant="h5">{user.name}</Typography>
-      <Typography variant="body1">{user.email}</Typography>
-      <Button variant="contained" sx={{ mt: 2 }}>Editar Perfil</Button>
-    </Box>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+     <img
+        src="/diplomado-react/perfil.jpg"
+        alt="Perfil"
+        className="w-16 h-16 rounded-full mb-2 shadow-md object-cover"
+      />
+      <h1 className="text-3xl font-bold mb-2">{auth.user.name}</h1>
+      <p>ID: {auth.user.id}</p>
+    </div>
   );
 };
+
+export default PerfilPage;

@@ -1,5 +1,11 @@
-export const NotFoundPage = () => (
-  <div style={{ textAlign: 'center', marginTop: '50px' }}>
-    <h1>Página No Encontrada</h1>
-  </div>
-);
+import React from 'react';
+
+const NotFoundPage: React.FC = () => {
+  return (
+    <div>
+      <h1>404 - Página no encontrada</h1>
+    </div>
+  );
+};
+
+export default NotFoundPage;

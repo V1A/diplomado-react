@@ -5,9 +5,10 @@ import {
   Button,
   Toolbar,
   Typography,
-} from '@mui/material';
-import { Logout as LogoutIcon } from '@mui/icons-material';
-import type { MenuType } from './types';
+} from "@mui/material";
+import { Logout as LogoutIcon } from "@mui/icons-material";
+import { useLocation } from "react-router-dom"; // 👈 Importamos hook de react-router
+import type { MenuType } from "./types";
 
 interface Props {
   username?: string;
@@ -16,29 +17,28 @@ interface Props {
 }
 
 export const Header = ({ username, menuOptions, logout }: Props) => {
+  const location = useLocation(); // 👈 Ruta actual
+
   const getPageTitle = () => {
     const currentOption = menuOptions.find(
       (option) => option.path === location.pathname
     );
-    return currentOption?.text || 'Mi App';
+    return currentOption?.text || "Mi App";
   };
 
   return (
-    <AppBar
-      position="fixed"
-      elevation={2}
-    >
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant="h6">
-          {getPageTitle()}
-        </Typography>
+    <AppBar position="fixed" elevation={2}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        {/* Título dinámico */}
+        <Typography variant="h6">{getPageTitle()}</Typography>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Avatar sx={{ width: 32, height: 32, bgcolor: 'primary.light' }}>
-            {username?.charAt(0).toUpperCase() || 'U'}
+        {/* Perfil + Botón de salir */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Avatar sx={{ width: 32, height: 32, bgcolor: "primary.light" }}>
+            {username?.charAt(0).toUpperCase() || "U"}
           </Avatar>
           <Typography variant="body2" sx={{ fontWeight: 500 }}>
-            {username || 'Usuario'}
+            {username || "Usuario"}
           </Typography>
           <Button
             color="inherit"
