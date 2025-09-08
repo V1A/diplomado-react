@@ -1,7 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { useAuth } from "../hooks"
+// src/routes/PublicRouter.tsx
+import { Outlet, Navigate } from 'react-router-dom';
 
-export const PublicRoute = () =>{
-  const {token} = useAuth()
-  return token ? <Navigate to='/perfil' /> : <Outlet />
-}
+export const PublicRoute = () => {
+  // Aquí podrías verificar si el usuario está logueado
+  const isAuthenticated = false; // para la práctica mínima, déjalo en false
+  return !isAuthenticated ? <Outlet /> : <Navigate to="/perfil" />;
+};

@@ -1,24 +1,21 @@
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { LoginPage, UserPage, NotFoundPage } from '../pages/public';
-import { PerfilPage, TasksPage } from '../pages/private';
-import { PrivateLayout } from '../layouts/PrivateLayout';
+import { HashRouter, Routes, Route } from "react-router-dom";
+import { LoginPage, NotFoundPage } from "../pages/public";
+import { PerfilPage, TasksPage } from "../pages/private";
+import { UsersPage } from "../pages/private/UsersPage";
 
 export const AppRouter = () => {
   return (
     <HashRouter>
       <Routes>
         {/* Rutas públicas */}
-        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/userRegister" element={<UserPage />} />
 
         {/* Rutas privadas */}
-        <Route element={<PrivateLayout />}>
-          <Route path="/perfil" element={<PerfilPage />} />
-          <Route path="/tasks" element={<TasksPage />} />
-        </Route>
+        <Route path="/perfil" element={<PerfilPage />} />
+        <Route path="/tasks" element={<TasksPage />} />
+        <Route path="/users" element={<UsersPage />} />
 
-        {/* Página no encontrada */}
+        {/* Ruta por defecto */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HashRouter>

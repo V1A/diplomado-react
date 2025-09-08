@@ -1,5 +1,12 @@
-function App() {
-  return <></>;
-}
+import { AuthProvider, AlertProvider } from "./contexts";
+import { AppRouter } from "./routes/AppRouter";
 
-export default App;
+export const App = () => {
+  return (
+    <AuthProvider>
+      <AlertProvider>
+        <AppRouter />
+      </AlertProvider>
+    </AuthProvider>
+  );
+};

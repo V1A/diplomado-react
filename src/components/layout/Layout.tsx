@@ -3,7 +3,7 @@ import {
   Toolbar,
   Container,
 } from '@mui/material';
-import { useAuth } from '../../hooks';
+//import { useAuth } from '../../hooks';
 import {
   Person as PersonIcon,
   Assignment as TaskIcon,
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const Layout = ({ children }: Props) => {
-  const { logout, user } = useAuth();
+  //const { logout, user } = useAuth();
 
   const menuOptions: MenuType[] = [
     { text: 'Mi Perfil', icon: <PersonIcon />, path: '/perfil' },
@@ -29,10 +29,11 @@ export const Layout = ({ children }: Props) => {
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Barra superior */}
       <Header
-        username={user?.username}
-        logout={logout}
-        menuOptions={menuOptions}
-      />
+        //username={user?.username}
+        //  logout={logout}
+        menuOptions={menuOptions} logout={function (): void {
+          throw new Error('Function not implemented.');
+        } }      />
 
       {/* Espaciador para el AppBar fixed */}
       <Toolbar />

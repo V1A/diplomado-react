@@ -1,15 +1,15 @@
-import { createContext } from 'react';
+import { createContext, useContext, useState } from "react";
 
-export interface User {
-  username: string;
-}
+const AuthContext = createContext(null);
 
-interface AuthContextType {
-  user: User | null;
-  token: string | null;
-  login: (token: string, user: User) => void;
-  logout: () => void;
-  isAuthenticated: boolean;
-}
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
